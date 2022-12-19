@@ -2,9 +2,7 @@ package com.aeyoung.together.domain.member.controller
 
 import com.aeyoung.together.domain.member.dto.req.MemberSignUpReqDto
 import com.aeyoung.together.domain.member.service.req.MemberSignUpService
-import com.aeyoung.together.global.response.SuccessResponse
 import jakarta.validation.Valid
-import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -18,7 +16,8 @@ class AuthController(
 ) {
 
     @PostMapping("/signup")
-    fun signUp(@Valid @RequestBody member: MemberSignUpReqDto): ResponseEntity<SuccessResponse> {
-        return ResponseEntity(SuccessResponse, HttpStatus.OK);
+    fun signUp(@Valid @RequestBody member: MemberSignUpReqDto): ResponseEntity<Object> {
+        memberSignUpService.join(member)
+        return ResponseEntity.ok().build();
     }
 }
