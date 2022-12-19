@@ -16,7 +16,7 @@ class AuthController(
 ) {
 
     @PostMapping("/signup")
-    fun signUp(@Valid @RequestBody member: MemberSignUpReqDto): ResponseEntity<Object> {
+    fun signUp(@Valid @RequestBody member: MemberSignUpReqDto): ResponseEntity<Void> {
         memberSignUpService.join(member)
         return ResponseEntity.ok().build();
     }
