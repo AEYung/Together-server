@@ -6,6 +6,8 @@ import jakarta.persistence.*
 @Entity
 class Member(
     val email: String,
+    val password: String,
+    val name: String,
 
     @Enumerated(EnumType.STRING) @Column(name = "Role")
     @ElementCollection(fetch = FetchType.EAGER)
