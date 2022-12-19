@@ -1,6 +1,6 @@
-package com.aeyoung.together.domain.member.service.req
+package com.aeyoung.together.domain.member.service
 
-import com.aeyoung.together.domain.member.dto.req.MemberSignUpReqDto
+import com.aeyoung.together.domain.member.presentation.dto.req.MemberSignUpReqDto
 import org.springframework.stereotype.Service
 
 @Service
