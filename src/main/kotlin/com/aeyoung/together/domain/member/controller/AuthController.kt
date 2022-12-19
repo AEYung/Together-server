@@ -1,19 +1,21 @@
 package com.aeyoung.together.domain.member.controller
 
-import com.aeyoung.together.domain.member.dto.req.MemberSignUpDto
+import com.aeyoung.together.domain.member.dto.req.MemberSignUpReqDto
 import com.aeyoung.together.domain.member.service.req.MemberSignUpService
+import jakarta.validation.Valid
+import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/members/")
+@RequestMapping("/members")
 class AuthController(
-        private val memberSignUpService: MemberSignUpService
+    private val memberSignUpService: MemberSignUpService
 ) {
 
-    @RequestMapping("/join")
-    fun signUp(@RequestBody member: MemberSignUpDto): Long {
+    @PostMapping("/signup")
+    fun signUp(@Valid @RequestBody member: MemberSignUpReqDto): Long {
         return memberSignUpService.join(member)
     }
 }

@@ -7,15 +7,19 @@ import jakarta.validation.constraints.NotBlank
 import jakarta.validation.constraints.Size
 import java.util.Collections
 
-class MemberSignUpDto(
+class MemberSignUpReqDto(
         @field:Email
-        val password: String,
+        @field:NotBlank
         val email: String,
-        @field:Size(min = 8)
+        @field:NotBlank
         val name: String,
+        @field:Size(min = 8)
+        @field:NotBlank
+        val password: String,
 ) {
     fun toEntity(passWord: String): Member =
-            Member(email = email,
+            Member(
+                    email = email,
                     password = password,
                     name = name,
                     roles = Collections.singletonList(Role.ROLE_MEMBER)
