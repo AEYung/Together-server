@@ -33,6 +33,9 @@ class SecurityConfig(
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             .and()
             .authorizeHttpRequests()
+
+            .requestMatchers("/auth/**").permitAll()
+
             .requestMatchers("/**").denyAll()
             .and()
             .exceptionHandling()
