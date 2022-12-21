@@ -4,6 +4,7 @@ import com.aeyoung.together.domain.mail.dto.EmailAuthMailReqDto
 import com.aeyoung.together.domain.mail.dto.EmailAuthReqDto
 import com.aeyoung.together.domain.mail.service.EmailAuthSendingService
 import com.aeyoung.together.domain.mail.service.EmailAuthVerifyingService
+import com.aeyoung.together.domain.member.service.req.MemberSignUpService
 import org.slf4j.LoggerFactory
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.PostMapping
@@ -15,11 +16,12 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/auth/mail")
 class EmailAuthController(
         val emailAuthSendingService: EmailAuthSendingService,
-        val emailAuthVerifyingService: EmailAuthVerifyingService
+        val emailAuthVerifyingService: EmailAuthVerifyingService,
+        val memberSignUpService: MemberSignUpService
 ) {
 
 
-    @PostMapping("/sending")
+    @PostMapping
     fun sendVerifyingMail(@RequestBody emailAuthReqDto: EmailAuthReqDto): ResponseEntity<Void> {
         emailAuthSendingService.joinEmail(emailAuthReqDto.email)
         return ResponseEntity.ok().build()
@@ -29,9 +31,8 @@ class EmailAuthController(
     fun verifyAuthCode(
             @RequestBody emailAuthMailReqDto: EmailAuthMailReqDto
     ): ResponseEntity<Void> {
-        if (emailAuthVerifyingService.execute(emailAuthMailReqDto.email, emailAuthMailReqDto.authCode)){
-            return ResponseEntity.ok().build()
-        }
-        return ResponseEntity.badRequest().build()
+        emailAuthVerifyingService.execute(emailAuthMailReqDto.email, emailAuthMailReqDto.authCode)
+        memberSignUpService.setIsCheckedEmail(true)
+        return ResponseEntity.ok().build()
     }
 }

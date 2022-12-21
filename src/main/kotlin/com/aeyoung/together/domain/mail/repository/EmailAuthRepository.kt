@@ -4,7 +4,6 @@ import com.aeyoung.together.domain.mail.EmailAuth
 import org.springframework.data.repository.CrudRepository
 import org.springframework.stereotype.Repository
 
-@Repository
 interface EmailAuthRepository : CrudRepository<EmailAuth, String> {
     fun findAuthCodeById(email: String): Int
 }

@@ -18,7 +18,7 @@ class MemberSignUpReqDto(
         @field:Size(min = 8, message = "비밀번호는 최소 8자여야 합니다.")
         @field:Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[@\$!%*?&])[A-Za-z\\d@\$!%*?&]{8,}\$")
         @field:NotBlank
-        val password: String,
+        val password: String
 ) {
 
 

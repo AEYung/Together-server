@@ -19,7 +19,7 @@ import kotlin.collections.HashMap
 
 @Service
 class EmailAuthSendingServiceImpl(
-        val emailAuthRepository: EmailAuthRepository,
+        private val emailAuthRepository: EmailAuthRepository,
         private val mailSender: JavaMailSender
 ) : EmailAuthSendingService {
 
@@ -51,7 +51,7 @@ class EmailAuthSendingServiceImpl(
     }
 
     override fun sendMail(sendFrom: String, toMail: String, title: String, content: String) {
-        val message = mailSender!!.createMimeMessage()
+        val message = mailSender.createMimeMessage()
 
         try {
             val helper = MimeMessageHelper(message, true, "UTF-8")

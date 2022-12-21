@@ -8,5 +8,5 @@ interface EmailAuthVerifyingService {
     fun execute(
             email: String,
             authCode: Int
-    ): Boolean
+    )
 }

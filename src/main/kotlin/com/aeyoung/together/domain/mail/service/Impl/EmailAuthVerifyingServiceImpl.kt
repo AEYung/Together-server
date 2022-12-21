@@ -2,7 +2,7 @@ package com.aeyoung.together.domain.mail.service.Impl
 
 import com.aeyoung.together.domain.mail.repository.EmailAuthRepository
 import com.aeyoung.together.domain.mail.service.EmailAuthVerifyingService
-import org.slf4j.LoggerFactory
+import com.aeyoung.together.global.exception.WrongAuthCodeException
 import org.springframework.stereotype.Service
 
 @Service
@@ -13,12 +13,9 @@ class EmailAuthVerifyingServiceImpl(
     override fun execute(
             email: String,
             authCode: Int
-    ): Boolean {
-        if (emailAuthRepository.existsById(email)) {
-            if (emailAuthRepository.findById(email).orElseThrow().authCode == authCode) {
-                return true
-            }
-        }
-        return false
+    ) {
+        val emailAuth = emailAuthRepository.findById(email)
+        emailAuth.orElseThrow { WrongAuthCodeException() }.authCode != authCode
+        return
     }
 }
