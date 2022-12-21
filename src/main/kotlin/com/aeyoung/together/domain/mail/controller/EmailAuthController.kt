@@ -4,8 +4,6 @@ import com.aeyoung.together.domain.mail.dto.EmailAuthMailReqDto
 import com.aeyoung.together.domain.mail.dto.EmailAuthReqDto
 import com.aeyoung.together.domain.mail.service.EmailAuthSendingService
 import com.aeyoung.together.domain.mail.service.EmailAuthVerifyingService
-import com.aeyoung.together.domain.member.service.req.MemberSignUpService
-import org.slf4j.LoggerFactory
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
