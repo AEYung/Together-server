@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController
 class EmailAuthController(
         val emailAuthSendingService: EmailAuthSendingService,
         val emailAuthVerifyingService: EmailAuthVerifyingService,
-        val memberSignUpService: MemberSignUpService
 ) {
 
 
@@ -32,7 +31,6 @@ class EmailAuthController(
             @RequestBody emailAuthMailReqDto: EmailAuthMailReqDto
     ): ResponseEntity<Void> {
         emailAuthVerifyingService.execute(emailAuthMailReqDto.email, emailAuthMailReqDto.authCode)
-        memberSignUpService.setIsCheckedEmail(true)
         return ResponseEntity.ok().build()
     }
 }

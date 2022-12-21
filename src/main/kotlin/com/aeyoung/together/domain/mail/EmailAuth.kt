@@ -7,5 +7,6 @@ import org.springframework.data.redis.core.RedisHash
 class EmailAuth(
         @Id
         val email: String,
-        val authCode: Int
+        val authCode: Int,
+        val isChecked:Boolean
 )

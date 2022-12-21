@@ -6,7 +6,5 @@ import org.springframework.stereotype.Service
 @Service
 interface MemberSignUpService {
 
-    fun setIsCheckedEmail(isChecked: Boolean)
-
     fun join(memberSignUpReqDto: MemberSignUpReqDto): Long
 }

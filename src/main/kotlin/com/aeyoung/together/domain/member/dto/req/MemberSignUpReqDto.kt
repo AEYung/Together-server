@@ -7,6 +7,7 @@ import jakarta.validation.constraints.NotBlank
 import jakarta.validation.constraints.Pattern
 import jakarta.validation.constraints.Size
 import java.util.Collections
+import kotlin.math.max
 
 class MemberSignUpReqDto(
         @field:Email
@@ -15,7 +16,7 @@ class MemberSignUpReqDto(
         val email: String,
         @field:NotBlank
         val name: String,
-        @field:Size(min = 8, message = "비밀번호는 최소 8자여야 합니다.")
+        @field:Size(min = 8, max = 20, message = "비밀번호는 최소 8자, 최대 20자여야 합니다.")
         @field:Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[@\$!%*?&])[A-Za-z\\d@\$!%*?&]{8,}\$")
         @field:NotBlank
         val password: String

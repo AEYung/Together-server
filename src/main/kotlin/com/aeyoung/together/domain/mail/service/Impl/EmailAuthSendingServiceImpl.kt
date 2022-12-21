@@ -34,8 +34,6 @@ class EmailAuthSendingServiceImpl(
     }
 
     override fun joinEmail(email: String) {
-        log.info("mailSender=${mailSender}")
-        log.info("$email")
         makeVerifyNum()
         val setFrom = "gsmtogether1@gmail.com"
         val title = "투게더 회원가입 인증 메일입니다."
@@ -47,7 +45,7 @@ class EmailAuthSendingServiceImpl(
                         "해당 인증번호를 인증번호 확인란에 기입해주세요."
         sendMail(setFrom, email, title, content)
 
-        val save = emailAuthRepository.save(EmailAuth(email = email, authCode = verifyNum))
+        emailAuthRepository.save(EmailAuth(email = email, authCode = verifyNum, isChecked = false))
     }
 
     override fun sendMail(sendFrom: String, toMail: String, title: String, content: String) {

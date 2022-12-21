@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/members")
+@RequestMapping("/auth")
 class AuthController(
         private val memberSignUpService: MemberSignUpService
 ) {
 
-    @PostMapping("/signup")
+    @PostMapping
     fun signUp(@Valid @RequestBody member: MemberSignUpReqDto): ResponseEntity<Void> {
         memberSignUpService.join(member)
         return ResponseEntity.ok().build();

@@ -1,5 +1,6 @@
 package com.aeyoung.together.domain.member.service.impl.req
 
+import com.aeyoung.together.domain.mail.repository.EmailAuthRepository
 import com.aeyoung.together.domain.member.dto.req.MemberSignUpReqDto
 import com.aeyoung.together.domain.member.repository.MemberRepository
 import com.aeyoung.together.domain.member.service.req.MemberSignUpService
@@ -13,12 +14,8 @@ import org.springframework.stereotype.Service
 class MemberSignUpServiceImpl(
         val memberRepository: MemberRepository,
         val passwordEncoder: PasswordEncoder,
+        private val emailAuthRepository: EmailAuthRepository,
 ) : MemberSignUpService {
-
-    var isCheckedEmail: Boolean = false;
-    override fun setIsCheckedEmail(isChecked: Boolean) {
-        isCheckedEmail = isChecked
-    }
 
     override fun join(
             memberSignUpReqDto: MemberSignUpReqDto,
@@ -26,9 +23,11 @@ class MemberSignUpServiceImpl(
         if (memberRepository.existsByEmail(memberSignUpReqDto.email)) {
             throw DuplicatedEmailException(ErrorCode.DUPLICATE_EMAIL)
         }
-        if (!isCheckedEmail) {
-            throw NotCheckedEmailException()
+        val emailAuth = emailAuthRepository.findById(memberSignUpReqDto.email).orElseThrow { NotCheckedEmailException() }
+        if (!emailAuth.isChecked) {
+            throw NotCheckedEmailException();
         }
+
         val member = memberSignUpReqDto.toEntity(passwordEncoder.encode(memberSignUpReqDto.password));
         return memberRepository.save(member).id
     }
