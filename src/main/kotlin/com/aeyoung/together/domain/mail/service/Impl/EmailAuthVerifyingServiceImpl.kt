@@ -3,8 +3,8 @@ package com.aeyoung.together.domain.mail.service.Impl
 import com.aeyoung.together.domain.mail.EmailAuth
 import com.aeyoung.together.domain.mail.repository.EmailAuthRepository
 import com.aeyoung.together.domain.mail.service.EmailAuthVerifyingService
-import com.aeyoung.together.global.exception.WrongAuthCodeException
-import com.aeyoung.together.global.exception.WrongEmailException
+import com.aeyoung.together.domain.mail.exception.WrongAuthCodeException
+import com.aeyoung.together.domain.mail.exception.WrongEmailException
 import org.springframework.stereotype.Service
 
 @Service

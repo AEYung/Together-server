@@ -4,9 +4,9 @@ import com.aeyoung.together.domain.mail.repository.EmailAuthRepository
 import com.aeyoung.together.domain.member.dto.req.MemberSignUpReqDto
 import com.aeyoung.together.domain.member.repository.MemberRepository
 import com.aeyoung.together.domain.member.service.req.MemberSignUpService
-import com.aeyoung.together.global.exception.DuplicatedEmailException
+import com.aeyoung.together.domain.member.exception.DuplicatedEmailException
 import com.aeyoung.together.global.exception.ErrorCode
-import com.aeyoung.together.global.exception.NotCheckedEmailException
+import com.aeyoung.together.domain.mail.exception.NotCheckedEmailException
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 
