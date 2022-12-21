@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service
 class MemberSignUpServiceImpl(
         val memberRepository: MemberRepository,
         val passwordEncoder: PasswordEncoder,
-        private val emailAuthRepository: EmailAuthRepository,
+        val emailAuthRepository: EmailAuthRepository,
 ) : MemberSignUpService {
 
     override fun join(
