@@ -8,7 +8,7 @@ enum class ErrorCode(
 
     WRONG_AUTHCODE("잘못된 인증 코드입니다.", 400),
 
-    WRONG_EMAIL("인증요청 하지 않은 이메일입니다.", 401),
+    WRONG_EMAIL("인증요청 하지 않은 이메일입니다.", 400),
 
     NOT_CHECKED_EMAIL("인증되지 않은 이메일입니다.", 401),
 
