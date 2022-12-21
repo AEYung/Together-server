@@ -26,7 +26,7 @@ class MemberSignUpServiceImpl(
         if (memberRepository.existsByEmail(memberSignUpReqDto.email)) {
             throw DuplicatedEmailException(ErrorCode.DUPLICATE_EMAIL)
         }
-        if () {
+        if (!isCheckedEmail) {
             throw NotCheckedEmailException()
         }
         val member = memberSignUpReqDto.toEntity(passwordEncoder.encode(memberSignUpReqDto.password));
