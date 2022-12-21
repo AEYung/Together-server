@@ -23,6 +23,4 @@ class MemberSignUpServiceImpl(
         val member = memberSignUpReqDto.toEntity(passwordEncoder.encode(memberSignUpReqDto.password));
         return memberRepository.save(member).id
     }
-
-
 }
