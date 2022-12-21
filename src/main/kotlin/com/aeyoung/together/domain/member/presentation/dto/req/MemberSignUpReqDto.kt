@@ -1,4 +1,4 @@
-package com.aeyoung.together.domain.member.dto.req
+package com.aeyoung.together.domain.member.presentation.dto.req
 
 import com.aeyoung.together.domain.member.Member
 import com.aeyoung.together.domain.member.Role

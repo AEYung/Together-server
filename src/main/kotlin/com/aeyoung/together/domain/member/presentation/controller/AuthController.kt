@@ -1,7 +1,7 @@
-package com.aeyoung.together.domain.member.controller
+package com.aeyoung.together.domain.member.presentation.controller
 
-import com.aeyoung.together.domain.member.dto.req.MemberSignUpReqDto
-import com.aeyoung.together.domain.member.service.req.MemberSignUpService
+import com.aeyoung.together.domain.member.presentation.dto.req.MemberSignUpReqDto
+import com.aeyoung.together.domain.member.service.MemberSignUpService
 import jakarta.validation.Valid
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.PostMapping

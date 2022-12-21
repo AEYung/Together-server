@@ -1,12 +1,11 @@
-package com.aeyoung.together.domain.member.service.impl.req
+package com.aeyoung.together.domain.member.service.impl
 
-import com.aeyoung.together.domain.mail.repository.EmailAuthRepository
-import com.aeyoung.together.domain.member.dto.req.MemberSignUpReqDto
-import com.aeyoung.together.domain.member.repository.MemberRepository
-import com.aeyoung.together.domain.member.service.req.MemberSignUpService
-import com.aeyoung.together.domain.member.exception.DuplicatedEmailException
-import com.aeyoung.together.global.exception.ErrorCode
+import DuplicatedEmailException
 import com.aeyoung.together.domain.mail.exception.NotCheckedEmailException
+import com.aeyoung.together.domain.mail.repository.EmailAuthRepository
+import com.aeyoung.together.domain.member.presentation.dto.req.MemberSignUpReqDto
+import com.aeyoung.together.domain.member.repository.MemberRepository
+import com.aeyoung.together.domain.member.service.MemberSignUpService
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 
@@ -21,13 +20,12 @@ class MemberSignUpServiceImpl(
             memberSignUpReqDto: MemberSignUpReqDto,
     ): Long {
         if (memberRepository.existsByEmail(memberSignUpReqDto.email)) {
-            throw DuplicatedEmailException(ErrorCode.DUPLICATE_EMAIL)
+            throw DuplicatedEmailException()
         }
         val emailAuth = emailAuthRepository.findById(memberSignUpReqDto.email).orElseThrow { NotCheckedEmailException() }
         if (!emailAuth.isChecked) {
             throw NotCheckedEmailException();
         }
-
         val member = memberSignUpReqDto.toEntity(passwordEncoder.encode(memberSignUpReqDto.password));
         return memberRepository.save(member).id
     }
