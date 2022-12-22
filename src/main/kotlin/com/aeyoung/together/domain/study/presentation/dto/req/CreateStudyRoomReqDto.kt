@@ -21,7 +21,7 @@ class CreateStudyRoomReqDto(
     val question: String?,
     val tags: List<String>?
 ) {
-    fun toEntity(member: Member,tags:List<StudyTag>?): StudyRoom =
+    fun toEntity(member: Member,tags:List<StudyTag>): StudyRoom =
         StudyRoom(
             title = title,
             description = description,
