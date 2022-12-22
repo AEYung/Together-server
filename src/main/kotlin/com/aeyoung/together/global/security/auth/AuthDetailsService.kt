@@ -12,7 +12,7 @@ class AuthDetailsService(
     private val memberRepository: MemberRepository,
 ): UserDetailsService {
     override fun loadUserByUsername(username: String): UserDetails {
-        val user = memberRepository.findByEmail(username) ?: throw RuntimeException()
+        val user = memberRepository.findMemberByEmail(username) ?: throw RuntimeException()
         return AuthDetails(user)
     }
 
