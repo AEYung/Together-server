@@ -7,7 +7,7 @@ import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.stereotype.Component
 
 @Component
-class UserUtil(private val memberRepository: MemberRepository) {
+class MemberUtil(private val memberRepository: MemberRepository) {
 
     fun currentMember(): Member {
         val email = SecurityContextHolder.getContext().authentication.name

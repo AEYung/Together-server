@@ -10,7 +10,7 @@ import com.aeyoung.together.domain.member.repository.MemberRepository
 import com.aeyoung.together.domain.member.repository.RefreshTokenRepository
 import com.aeyoung.together.domain.member.service.MemberSignInService
 import com.aeyoung.together.global.security.jwt.TokenProvider
-import com.aeyoung.together.global.util.UserUtil
+import com.aeyoung.together.global.util.MemberUtil
 import org.slf4j.LoggerFactory
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
@@ -23,7 +23,7 @@ class MemberSignInServiceImpl(
         val memberRepository: MemberRepository,
         val passwordEncoder: PasswordEncoder,
         val tokenProvider: TokenProvider,
-        val userUtil: UserUtil
+        val memberUtil: MemberUtil
 ) : MemberSignInService {
 
     private val log = LoggerFactory.getLogger(this::class.simpleName)
@@ -48,7 +48,7 @@ class MemberSignInServiceImpl(
     }
 
     override fun getLoginMember(): Member? {
-        log.info(userUtil.currentMember().email)
-        return userUtil.currentMember()
+        log.info(memberUtil.currentMember().email)
+        return memberUtil.currentMember()
     }
 }
