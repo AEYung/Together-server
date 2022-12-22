@@ -25,8 +25,6 @@ class EmailAuthSendingServiceImpl(
 
     private var verifyNum = 0;
 
-    private val log = LoggerFactory.getLogger(this.javaClass.simpleName)
-
     override fun makeVerifyNum() {
         val r: Random = Random()
         verifyNum = r.nextInt(0, 888888)

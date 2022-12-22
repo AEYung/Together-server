@@ -1,7 +1,7 @@
 package com.aeyoung.together.domain.member.service.impl
 
 import DuplicatedEmailException
-import com.aeyoung.together.domain.mail.exception.NotCheckedEmailException
+import com.aeyoung.together.domain.mail.presentation.exception.NotCheckedEmailException
 import com.aeyoung.together.domain.mail.repository.EmailAuthRepository
 import com.aeyoung.together.domain.member.presentation.dto.req.MemberSignUpReqDto
 import com.aeyoung.together.domain.member.repository.MemberRepository
