@@ -9,6 +9,7 @@ import com.aeyoung.together.domain.study.repository.StudyTagRepository
 import com.aeyoung.together.domain.study.service.CreateStudyRoomService
 import com.aeyoung.together.global.util.MemberUtil
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 @Service
 class CreateStudyRoomServiceImpl(
@@ -16,6 +17,8 @@ class CreateStudyRoomServiceImpl(
     val studyTagRepository: StudyTagRepository,
     val memberUtil: MemberUtil
 ) : CreateStudyRoomService {
+
+    @Transactional(rollbackFor = [Exception::class])
     override fun createStudyRoom(createStudyRoomReqDto: CreateStudyRoomReqDto): StudyRoom {
         val host = memberUtil.currentMember() ?: throw NotExistLoginMemberException()
         val studyTags: MutableList<StudyTag> = mutableListOf()

@@ -22,7 +22,7 @@ class StudyRoom(
     @JoinColumn(name = "host")
     val host: Member,
     @ManyToMany
-    val tags: List<StudyTag>?
+    val tags: List<StudyTag>
 ): BaseIdEntity() {
     @ManyToMany
     val members: List<Member> = mutableListOf()

@@ -16,7 +16,7 @@ class StudyRoomController(
     val createStudyRoomService: CreateStudyRoomService
 ) {
 
-    @PostMapping("/create")
+    @PostMapping
     fun createStudyRoom(@Valid @RequestBody createStudyRoomReqDto: CreateStudyRoomReqDto): ResponseEntity<StudyRoom> {
         createStudyRoomService.createStudyRoom(createStudyRoomReqDto)
         return ResponseEntity.ok().build()
