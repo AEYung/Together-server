@@ -1,4 +1,4 @@
-package com.aeyoung.together.domain.mail.dto
+package com.aeyoung.together.domain.mail.presentation.dto
 
 import jakarta.validation.constraints.Email
 import jakarta.validation.constraints.NotBlank

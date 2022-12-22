@@ -1,7 +1,7 @@
 package com.aeyoung.together.domain.mail.controller
 
-import com.aeyoung.together.domain.mail.dto.EmailAuthMailReqDto
-import com.aeyoung.together.domain.mail.dto.EmailAuthReqDto
+import com.aeyoung.together.domain.mail.presentation.dto.EmailAuthMailReqDto
+import com.aeyoung.together.domain.mail.presentation.dto.EmailAuthReqDto
 import com.aeyoung.together.domain.mail.service.EmailAuthSendingService
 import com.aeyoung.together.domain.mail.service.EmailAuthVerifyingService
 import org.springframework.http.ResponseEntity

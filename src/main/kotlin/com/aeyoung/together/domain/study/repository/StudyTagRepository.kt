@@ -1,9 +1,10 @@
 package com.aeyoung.together.domain.study.repository
 
-import com.aeyoung.together.domain.study.StudyRoom
+import com.aeyoung.together.domain.study.StudyTag
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository
 
 @Repository
-interface StudyRoomRepository: JpaRepository<StudyRoom, Long> {
+interface StudyTagRepository : JpaRepository<StudyTag, Long> {
+    fun findByContent(content:String):StudyTag?
 }

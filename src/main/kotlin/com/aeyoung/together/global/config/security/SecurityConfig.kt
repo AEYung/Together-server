@@ -34,6 +34,7 @@ class SecurityConfig(
             .and()
             .authorizeHttpRequests()
             .requestMatchers("/auth/**").permitAll()
+            .requestMatchers("/studies/**").permitAll()
             .requestMatchers("/**").denyAll()
             .and()
             .exceptionHandling()
