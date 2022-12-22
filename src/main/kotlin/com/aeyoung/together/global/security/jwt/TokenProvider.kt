@@ -16,8 +16,8 @@ import java.util.*
 
 @Component
 class TokenProvider(
-        private val jwtProperties: JwtProperties,
-        private val authDetailsService: AuthDetailsService
+    private val jwtProperties: JwtProperties,
+    private val authDetailsService: AuthDetailsService
 ) {
     companion object {
         const val ACCESS_TYPE = "access"
@@ -31,10 +31,10 @@ class TokenProvider(
         get() = ZonedDateTime.now().plusSeconds(ACCESS_EXP)
 
     fun generateAccessToken(email: String): String =
-            generateToken(email, ACCESS_TYPE, jwtProperties.accessSecret, ACCESS_EXP)
+        generateToken(email, ACCESS_TYPE, jwtProperties.accessSecret, ACCESS_EXP)
 
     fun generateRefreshToken(email: String): String =
-            generateToken(email, REFRESH_TYPE, jwtProperties.refreshSecret, REFRESH_EXP)
+        generateToken(email, REFRESH_TYPE, jwtProperties.refreshSecret, REFRESH_EXP)
 
     fun resolveToken(req: HttpServletRequest): String? {
         val token = req.getHeader("Authorization") ?: return null
@@ -51,25 +51,25 @@ class TokenProvider(
     }
 
     fun parseToken(token: String): String? =
-            if (token.startsWith(TOKEN_PREFIX)) token.replace(TOKEN_PREFIX, "") else null
+        if (token.startsWith(TOKEN_PREFIX)) token.replace(TOKEN_PREFIX, "") else null
 
     fun generateToken(sub: String, type: String, secret: Key, exp: Long): String {
         return Jwts.builder()
-                .signWith(secret, SignatureAlgorithm.HS256)
-                .setSubject(sub)
-                .claim("type", type)
-                .setIssuedAt(Date())
-                .setExpiration(Date(System.currentTimeMillis() + exp * 1000))
-                .compact()
+            .signWith(secret, SignatureAlgorithm.HS256)
+            .setSubject(sub)
+            .claim("type", type)
+            .setIssuedAt(Date())
+            .setExpiration(Date(System.currentTimeMillis() + exp * 1000))
+            .compact()
     }
 
     private fun getTokenBody(token: String, secret: Key): Claims {
         return try {
             Jwts.parserBuilder()
-                    .setSigningKey(secret)
-                    .build()
-                    .parseClaimsJws(token)
-                    .body
+                .setSigningKey(secret)
+                .build()
+                .parseClaimsJws(token)
+                .body
         } catch (e: ExpiredJwtException) {
             throw RuntimeException()
         } catch (e: Exception) {
@@ -78,5 +78,5 @@ class TokenProvider(
     }
 
     private fun getTokenSubject(token: String, secret: Key): String =
-            getTokenBody(token, secret).subject
+        getTokenBody(token, secret).subject
 }
