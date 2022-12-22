@@ -1,6 +1,6 @@
 package com.aeyoung.together.domain.study.service.impl
 
-import com.aeyoung.together.domain.study.exception.StudyNotFindException
+import com.aeyoung.together.domain.study.exception.StudyNotFoundException
 import com.aeyoung.together.domain.study.presentation.dto.res.StudyResDto
 import com.aeyoung.together.domain.study.repository.StudyRoomRepository
 import com.aeyoung.together.domain.study.service.GetOneStudyService
@@ -15,7 +15,7 @@ class GetOneStudyServiceImpl(
     override fun execute(id: Long): StudyResDto {
         return StudyResDto(
             studyRoom = studyRoomRepository.findById(id)
-                .orElseThrow{ throw StudyNotFindException()}
+                .orElseThrow{ throw StudyNotFoundException()}
         )
     }
 }
