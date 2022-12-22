@@ -21,6 +21,7 @@ enum class ErrorCode(
     MEMBER_NOT_FOUND("유저를 찾을 수 없습니다.", 404),
 
     NOT_FOUND("리소스를 찾을수 없음", 404),
+    STUDY_NOT_FOUND("해당 스터디를 찾을 수 없습니다.", 404),
 
     DUPLICATE_EMAIL("중복되는 이메일입니다.", 409),
 
