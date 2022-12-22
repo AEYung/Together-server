@@ -4,6 +4,6 @@ import com.aeyoung.together.domain.member.Member
 import org.springframework.data.jpa.repository.JpaRepository
 
 interface MemberRepository: JpaRepository<Member, Long> {
-    fun findByEmail(email: String): Member?
+    fun findMemberByEmail(email: String): Member?
     fun existsByEmail(email: String): Boolean
 }
