@@ -20,8 +20,6 @@ class AuthController(
         private val memberSignInService: MemberSignInService,
 ) {
 
-    private val log = LoggerFactory.getLogger(this::class.simpleName)
-
     @PostMapping("/signup")
     fun signUp(@Valid @RequestBody member: MemberSignUpReqDto): ResponseEntity<Void> {
         memberSignUpService.join(member)

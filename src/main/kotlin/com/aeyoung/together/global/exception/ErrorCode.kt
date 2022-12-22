@@ -12,7 +12,7 @@ enum class ErrorCode(
 
     WRONG_PASSWORD("비밀번호가 올바르지 않습니다.", 400),
 
-    NOT_EXIST_LOGIN_MEMBER("로그인 상태가 아닙니다.", 400),
+    NOT_EXIST_LOGIN_MEMBER("로그인 상태가 아닙니다.", 401),
 
     NOT_CHECKED_EMAIL("인증되지 않은 이메일입니다.", 401),
 

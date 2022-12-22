@@ -11,7 +11,6 @@ import com.aeyoung.together.domain.member.repository.RefreshTokenRepository
 import com.aeyoung.together.domain.member.service.MemberSignInService
 import com.aeyoung.together.global.security.jwt.TokenProvider
 import com.aeyoung.together.global.util.MemberUtil
-import org.slf4j.LoggerFactory
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -26,12 +25,9 @@ class MemberSignInServiceImpl(
         val memberUtil: MemberUtil
 ) : MemberSignInService {
 
-    private val log = LoggerFactory.getLogger(this::class.simpleName)
-
     @Transactional
     override fun signIn(req: MemberSignInReqDto): MemberSignInResDto {
         val member = memberRepository.findMemberByEmail(req.email) ?: throw MemberNotFoundException()
-        log.info("${req.password},${member.password}")
         if (!passwordEncoder.matches(req.password, member.password)) {
             throw WrongPasswordException()
         }
@@ -48,7 +44,6 @@ class MemberSignInServiceImpl(
     }
 
     override fun getLoginMember(): Member? {
-        log.info(memberUtil.currentMember().email)
         return memberUtil.currentMember()
     }
 }

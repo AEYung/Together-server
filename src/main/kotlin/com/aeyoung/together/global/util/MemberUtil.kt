@@ -11,7 +11,6 @@ class MemberUtil(private val memberRepository: MemberRepository) {
 
     fun currentMember(): Member {
         val email = SecurityContextHolder.getContext().authentication.name
-        println(email)
         if (memberRepository.findMemberByEmail(email) == null) {
             throw NotExistLoginMemberException()
         }
