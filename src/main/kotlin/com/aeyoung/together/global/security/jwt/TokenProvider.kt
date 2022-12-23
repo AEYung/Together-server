@@ -1,7 +1,9 @@
 package com.aeyoung.together.global.security.jwt
 
+import com.aeyoung.together.domain.member.exception.RefreshTokenNotValidException
 import com.aeyoung.together.global.config.security.jwt.JwtProperties
 import com.aeyoung.together.global.security.auth.AuthDetailsService
+import com.aeyoung.together.global.security.jwt.exception.TokenExpiredException
 import io.jsonwebtoken.Claims
 import io.jsonwebtoken.ExpiredJwtException
 import io.jsonwebtoken.Jwts
@@ -71,9 +73,9 @@ class TokenProvider(
                 .parseClaimsJws(token)
                 .body
         } catch (e: ExpiredJwtException) {
-            throw RuntimeException()
+            throw TokenExpiredException()
         } catch (e: Exception) {
-            throw RuntimeException()
+            throw RefreshTokenNotValidException()
         }
     }
 
