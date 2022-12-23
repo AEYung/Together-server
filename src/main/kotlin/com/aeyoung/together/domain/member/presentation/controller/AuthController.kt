@@ -4,8 +4,10 @@ import com.aeyoung.together.domain.member.Member
 import com.aeyoung.together.domain.member.presentation.dto.req.MemberSignInReqDto
 import com.aeyoung.together.domain.member.presentation.dto.req.MemberSignUpReqDto
 import com.aeyoung.together.domain.member.presentation.dto.res.MemberSignInResDto
+import com.aeyoung.together.domain.member.presentation.dto.res.RefreshResDto
 import com.aeyoung.together.domain.member.service.MemberSignInService
 import com.aeyoung.together.domain.member.service.MemberSignUpService
+import com.aeyoung.together.domain.member.service.RefreshService
 import jakarta.validation.Valid
 import org.aspectj.weaver.MemberUtils
 import org.slf4j.LoggerFactory
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.*
 class AuthController(
         private val memberSignUpService: MemberSignUpService,
         private val memberSignInService: MemberSignInService,
+        private val refreshService: RefreshService,
 ) {
 
     @PostMapping("/signup")
@@ -38,4 +41,7 @@ class AuthController(
         return ResponseEntity.ok(loginMember)
     }
 
+    @PostMapping("/refresh")
+    fun refresh(@RequestHeader("RefreshToken") refreshToken: String): ResponseEntity<RefreshResDto> =
+        ResponseEntity.ok(refreshService.execute(refreshToken))
 }
