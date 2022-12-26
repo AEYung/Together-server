@@ -31,5 +31,5 @@ class StudyRoom(
     val members: List<Member> = mutableListOf()
 
     @OneToMany(mappedBy = "studyRoom")
-    val studyNotices: List<StudyNotice> = mutableListOf()
+    val studyNotices: MutableList<StudyNotice> = mutableListOf()
 }

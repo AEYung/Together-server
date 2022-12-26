@@ -13,7 +13,9 @@ class StudyNotice(
     val writer: Member,
     val content: String,
     @ManyToOne
-    @JoinColumn(name = "studyRoomId")
+    @JoinColumn(name = "studyRoom_id")
     val studyRoom: StudyRoom
 ) : BaseIdEntity() {
+    @OneToMany(mappedBy = "notice")
+    val comments: MutableList<StudyNoticeComment> = mutableListOf()
 }

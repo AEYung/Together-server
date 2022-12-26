@@ -1,8 +1,8 @@
 package com.aeyoung.together.global.exception
 
 enum class ErrorCode(
-        val msg: String,
-        val code: Int
+    val msg: String,
+    val code: Int
 ) {
     BAD_REQUEST("잘못된 요청", 400),
 
@@ -21,7 +21,10 @@ enum class ErrorCode(
     MEMBER_NOT_FOUND("유저를 찾을 수 없습니다.", 404),
 
     NOT_FOUND("리소스를 찾을수 없음", 404),
+
     STUDY_NOT_FOUND("해당 스터디를 찾을 수 없습니다.", 404),
+
+    STUDY_NOTICE_NOT_FOUND("해당 공지를 찾을 수 없습니다.", 404),
 
     DUPLICATE_EMAIL("중복되는 이메일입니다.", 409),
 

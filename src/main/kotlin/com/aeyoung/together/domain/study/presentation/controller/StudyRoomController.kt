@@ -2,6 +2,7 @@ package com.aeyoung.together.domain.study.presentation.controller
 
 import com.aeyoung.together.domain.study.StudyRoom
 import com.aeyoung.together.domain.study.presentation.dto.req.CreateStudyRoomReqDto
+import com.aeyoung.together.domain.study.presentation.dto.req.WriteNoticeCommentReqDto
 import com.aeyoung.together.domain.study.presentation.dto.req.WriteNoticeReqDto
 import com.aeyoung.together.domain.study.presentation.dto.res.StudyListResDto
 import com.aeyoung.together.domain.study.presentation.dto.res.StudyResDto
@@ -17,7 +18,8 @@ class StudyRoomController(
     private val getAllStudyService: GetAllStudyService,
     private val getOneStudyService: GetOneStudyService,
     private val searchStudyService: SearchStudyService,
-    private val writeNoticeService: WriteNoticeService
+    private val writeNoticeService: WriteNoticeService,
+    private val writeNoticeCommentService: WriteNoticeCommentService
 ) {
 
     @PostMapping
@@ -38,9 +40,15 @@ class StudyRoomController(
     fun searchStudy(@RequestParam searchArgument: String): ResponseEntity<StudyListResDto> =
         ResponseEntity.ok(searchStudyService.execute(searchArgument))
 
-    @PostMapping("/writingNotices")
+    @PostMapping("/notices")
     fun writeNotice(@Valid @RequestBody writeNoticeReqDto: WriteNoticeReqDto): ResponseEntity<Void> {
         writeNoticeService.execute(writeNoticeReqDto)
+        return ResponseEntity.ok().build()
+    }
+
+    @PostMapping("/notices/comments")
+    fun writeNoticeComment(@Valid @RequestBody writeNoticeCommentReqDto: WriteNoticeCommentReqDto): ResponseEntity<Void> {
+        writeNoticeCommentService.execute(writeNoticeCommentReqDto)
         return ResponseEntity.ok().build()
     }
 }
