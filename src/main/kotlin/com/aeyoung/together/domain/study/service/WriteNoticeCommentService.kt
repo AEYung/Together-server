@@ -4,5 +4,5 @@ import com.aeyoung.together.domain.study.presentation.dto.req.WriteNoticeComment
 
 interface WriteNoticeCommentService {
 
-    fun execute(writeNoticeCommentReqDto: WriteNoticeCommentReqDto)
+    fun execute(writeNoticeCommentReqDto: WriteNoticeCommentReqDto,noticeId:Long)
 }

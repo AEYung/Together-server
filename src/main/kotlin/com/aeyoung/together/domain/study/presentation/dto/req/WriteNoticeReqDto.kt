@@ -9,8 +9,6 @@ import jakarta.validation.constraints.NotBlank
 class WriteNoticeReqDto(
     @NotBlank
     val content: String,
-    @NotBlank
-    val studyRoomId: Long
 ) {
     fun toEntity(writer: Member, studyRoom: StudyRoom): StudyNotice =
         StudyNotice(

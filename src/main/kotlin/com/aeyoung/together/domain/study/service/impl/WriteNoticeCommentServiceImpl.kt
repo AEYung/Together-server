@@ -14,8 +14,8 @@ class WriteNoticeCommentServiceImpl(
     val studyNoticeCommentRepository: StudyNoticeCommentRepository,
     val memberUtil: MemberUtil
 ) : WriteNoticeCommentService {
-    override fun execute(writeNoticeCommentReqDto: WriteNoticeCommentReqDto) {
-        val studyNotice = studyNoticeRepository.findById(writeNoticeCommentReqDto.noticeId).orElseThrow { throw StudyNoticeNotFoundException() }
+    override fun execute(writeNoticeCommentReqDto: WriteNoticeCommentReqDto, noticeId: Long) {
+        val studyNotice = studyNoticeRepository.findById(noticeId).orElseThrow { throw StudyNoticeNotFoundException() }
         val noticeComment = writeNoticeCommentReqDto.toEntity(studyNotice, memberUtil.currentMember())
 
         studyNoticeCommentRepository.save(noticeComment)

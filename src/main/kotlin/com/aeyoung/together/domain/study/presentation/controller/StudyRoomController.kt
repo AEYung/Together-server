@@ -40,15 +40,15 @@ class StudyRoomController(
     fun searchStudy(@RequestParam searchArgument: String): ResponseEntity<StudyListResDto> =
         ResponseEntity.ok(searchStudyService.execute(searchArgument))
 
-    @PostMapping("/notices")
-    fun writeNotice(@Valid @RequestBody writeNoticeReqDto: WriteNoticeReqDto): ResponseEntity<Void> {
-        writeNoticeService.execute(writeNoticeReqDto)
+    @PostMapping("/{studyId}/notices")
+    fun writeNotice(@Valid @RequestBody writeNoticeReqDto: WriteNoticeReqDto, @RequestParam studyId: Long): ResponseEntity<Void> {
+        writeNoticeService.execute(writeNoticeReqDto,studyId)
         return ResponseEntity.ok().build()
     }
 
-    @PostMapping("/notices/comments")
-    fun writeNoticeComment(@Valid @RequestBody writeNoticeCommentReqDto: WriteNoticeCommentReqDto): ResponseEntity<Void> {
-        writeNoticeCommentService.execute(writeNoticeCommentReqDto)
+    @PostMapping("/{studyId}/{noticeId}/comments")
+    fun writeNoticeComment(@Valid @RequestBody writeNoticeCommentReqDto: WriteNoticeCommentReqDto, @RequestParam noticeId: Long): ResponseEntity<Void> {
+        writeNoticeCommentService.execute(writeNoticeCommentReqDto,noticeId)
         return ResponseEntity.ok().build()
     }
 }

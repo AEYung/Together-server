@@ -1,6 +1,5 @@
 package com.aeyoung.together.domain.study.service.impl
 
-//import com.aeyoung.together.domain.study.Comment
 import com.aeyoung.together.domain.study.StudyNotice
 import com.aeyoung.together.domain.study.exception.StudyNotFoundException
 import com.aeyoung.together.domain.study.presentation.dto.req.WriteNoticeReqDto
@@ -17,8 +16,8 @@ class WriteNoticeServiceImpl(
     val studyRoomRepository: StudyRoomRepository,
     val studyNoticeRepository: StudyNoticeRepository
 ) : WriteNoticeService {
-    override fun execute(writeNoticeReqDto: WriteNoticeReqDto) {
-        val studyRoom = studyRoomRepository.findById(writeNoticeReqDto.studyRoomId).orElseThrow { throw StudyNotFoundException() }
+    override fun execute(writeNoticeReqDto: WriteNoticeReqDto, studyId: Long) {
+        val studyRoom = studyRoomRepository.findById(studyId).orElseThrow { throw StudyNotFoundException() }
         val studyNotice = writeNoticeReqDto.toEntity(memberUtil.currentMember(), studyRoom)
 
         studyNoticeRepository.save(studyNotice)

@@ -8,8 +8,6 @@ import jakarta.validation.constraints.NotBlank
 class WriteNoticeCommentReqDto(
     @NotBlank
     val content: String,
-    @NotBlank
-    val noticeId: Long
 ) {
     fun toEntity(studyNotice: StudyNotice, writer: Member): StudyNoticeComment =
         StudyNoticeComment(
