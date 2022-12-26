@@ -13,8 +13,6 @@ class EmailAuthMailReqDto (
         @field:NotBlank
         @field:Size(min = 6, max = 6, message = "인증 코드는 6자입니다.")
         val authCode:Int,
-        @field:NotBlank
-        val isCheckedEmail:Boolean
         ){
 
 }

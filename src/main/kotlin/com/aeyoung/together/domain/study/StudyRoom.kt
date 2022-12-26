@@ -9,6 +9,7 @@ import jakarta.persistence.Enumerated
 import jakarta.persistence.JoinColumn
 import jakarta.persistence.ManyToMany
 import jakarta.persistence.ManyToOne
+import jakarta.persistence.OneToMany
 
 @Entity
 class StudyRoom(
@@ -23,7 +24,12 @@ class StudyRoom(
     val host: Member,
     @ManyToMany
     val tags: List<StudyTag>
-): BaseIdEntity() {
+
+) : BaseIdEntity() {
+
     @ManyToMany
     val members: List<Member> = mutableListOf()
+
+    @OneToMany(mappedBy = "studyRoom")
+    val studyNotices: List<StudyNotice> = mutableListOf()
 }
