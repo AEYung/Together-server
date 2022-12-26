@@ -23,9 +23,12 @@ class UpdateStudyRoomServiceImpl(
 
     @Transactional(rollbackFor = [Exception::class])
     override fun execute(updateStudyRoomReqDto: UpdateStudyRoomReqDto, studyRoomId: Long) {
-        val updatingStudyRoom = studyRoomRepository.findById(studyRoomId).orElseThrow { throw StudyNotFoundException() }
 
-        if (memberUtil.currentMember().id != updatingStudyRoom.host.id) throw MemberNotHostException()
+        val updatingStudyRoom = studyRoomRepository.findById(studyRoomId)
+            .orElseThrow { throw StudyNotFoundException() }
+
+        if (memberUtil.currentMember().id != updatingStudyRoom.host.id)
+            throw MemberNotHostException()
 
         var tags = mutableListOf<StudyTag>()
         if (updateStudyRoomReqDto.tags != null) {
