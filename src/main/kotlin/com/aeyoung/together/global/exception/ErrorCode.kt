@@ -8,8 +8,11 @@ enum class ErrorCode(
     WRONG_AUTHCODE("잘못된 인증 코드입니다.", 400),
     WRONG_EMAIL("인증요청 하지 않은 이메일입니다.", 400),
     WRONG_PASSWORD("비밀번호가 올바르지 않습니다.", 400),
+    STUDY_SCOPE_NOT_VALID("스터디 공개 범위가 올바르지 않습니다.", 400),
+    STUDY_CODE_NOT_MATCH("스터디 룸 코드가 일치하지 않습니다.", 400),
 
     NOT_EXIST_LOGIN_MEMBER("로그인 상태가 아닙니다.", 401),
+    NOT_HOST("해당 유저가 호스트가 아닙니다.", 401),
     NOT_CHECKED_EMAIL("인증되지 않은 이메일입니다.", 401),
     TOKEN_EXPIRED("토큰이 만료되었습니다", 401),
     TOKEN_NOT_VALID("토큰이 유효하지 않습니다.", 401),
