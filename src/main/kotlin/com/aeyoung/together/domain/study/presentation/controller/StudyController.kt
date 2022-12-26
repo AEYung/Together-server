@@ -3,16 +3,11 @@ package com.aeyoung.together.domain.study.presentation.controller
 import com.aeyoung.together.domain.study.presentation.dto.req.ApplyPermissionStudyReqDto
 import com.aeyoung.together.domain.study.presentation.dto.req.CreateStudyRoomReqDto
 
-import com.aeyoung.together.domain.studyRoom.presentation.dto.req.WriteNoticeCommentReqDto
-import com.aeyoung.together.domain.studyRoom.presentation.dto.req.WriteNoticeReqDto
-
 import com.aeyoung.together.domain.study.presentation.dto.res.PendingListResDto
 
 import com.aeyoung.together.domain.study.presentation.dto.res.StudyListResDto
 import com.aeyoung.together.domain.study.presentation.dto.res.StudyResDto
 import com.aeyoung.together.domain.study.service.*
-import com.aeyoung.together.domain.studyRoom.service.WriteNoticeCommentService
-import com.aeyoung.together.domain.studyRoom.service.WriteNoticeService
 import jakarta.validation.Valid
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -24,8 +19,6 @@ class StudyController(
     private val getAllStudyService: GetAllStudyService,
     private val getOneStudyService: GetOneStudyService,
     private val searchStudyService: SearchStudyService,
-    private val writeNoticeService: WriteNoticeService,
-    private val writeNoticeCommentService: WriteNoticeCommentService,
     private val applyStudyService: ApplyStudyService,
     private val getPendingListService: GetPendingListService,
     private val approveStudyMemberService: ApproveStudyMemberService,
