@@ -16,8 +16,8 @@ class Member(
     val roles: MutableList<Role>,
 ): BaseIdEntity(){
     @ManyToMany(mappedBy = "members")
-    val studyList: List<StudyRoom> = mutableListOf()
+    val studyList: MutableList<StudyRoom> = mutableListOf()
 
     @OneToMany(cascade = [CascadeType.REMOVE], mappedBy = "host")
-    val hostStudy: List<StudyRoom> = mutableListOf()
+    val hostStudy: MutableList<StudyRoom> = mutableListOf()
 }
