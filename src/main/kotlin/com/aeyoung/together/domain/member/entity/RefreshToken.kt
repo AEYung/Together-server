@@ -1,16 +1,15 @@
 package com.aeyoung.together.domain.member.entity
 
+import com.aeyoung.together.global.security.jwt.TokenProvider
 import org.springframework.data.annotation.Id
 import org.springframework.data.redis.core.RedisHash
 import org.springframework.data.redis.core.TimeToLive
 import org.springframework.data.redis.core.index.Indexed
 
-@RedisHash(value = "refreshToken")
+@RedisHash(value = "refreshToken", timeToLive = TokenProvider.REFRESH_EXP)
 class RefreshToken(
         @Id
-        private var email: String,
         @Indexed
+        private var email: String,
         var token: String,
-        @TimeToLive
-        private var expiredAt: Long
 )

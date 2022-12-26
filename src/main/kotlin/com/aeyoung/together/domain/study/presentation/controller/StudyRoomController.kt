@@ -1,9 +1,14 @@
 package com.aeyoung.together.domain.study.presentation.controller
 
 import com.aeyoung.together.domain.study.StudyRoom
+import com.aeyoung.together.domain.study.presentation.dto.req.ApplyPermissionStudyReqDto
 import com.aeyoung.together.domain.study.presentation.dto.req.CreateStudyRoomReqDto
+
 import com.aeyoung.together.domain.study.presentation.dto.req.WriteNoticeCommentReqDto
 import com.aeyoung.together.domain.study.presentation.dto.req.WriteNoticeReqDto
+
+import com.aeyoung.together.domain.study.presentation.dto.res.PendingListResDto
+
 import com.aeyoung.together.domain.study.presentation.dto.res.StudyListResDto
 import com.aeyoung.together.domain.study.presentation.dto.res.StudyResDto
 import com.aeyoung.together.domain.study.service.*
@@ -19,7 +24,10 @@ class StudyRoomController(
     private val getOneStudyService: GetOneStudyService,
     private val searchStudyService: SearchStudyService,
     private val writeNoticeService: WriteNoticeService,
-    private val writeNoticeCommentService: WriteNoticeCommentService
+    private val writeNoticeCommentService: WriteNoticeCommentService,
+    private val applyStudyService: ApplyStudyService,
+    private val getPendingListService: GetPendingListService,
+    private val approveStudyMemberService: ApproveStudyMemberService,
 ) {
 
     @PostMapping
@@ -42,13 +50,41 @@ class StudyRoomController(
 
     @PostMapping("/{studyId}/notices")
     fun writeNotice(@Valid @RequestBody writeNoticeReqDto: WriteNoticeReqDto, @RequestParam studyId: Long): ResponseEntity<Void> {
-        writeNoticeService.execute(writeNoticeReqDto,studyId)
+        writeNoticeService.execute(writeNoticeReqDto, studyId)
         return ResponseEntity.ok().build()
     }
 
     @PostMapping("/{studyId}/{noticeId}/comments")
     fun writeNoticeComment(@Valid @RequestBody writeNoticeCommentReqDto: WriteNoticeCommentReqDto, @RequestParam noticeId: Long): ResponseEntity<Void> {
-        writeNoticeCommentService.execute(writeNoticeCommentReqDto,noticeId)
+        writeNoticeCommentService.execute(writeNoticeCommentReqDto, noticeId)
+        return ResponseEntity.ok().build()
+    }
+
+    @PostMapping("/{id}")
+    fun applyStudy(@PathVariable id: Long): ResponseEntity<Void> {
+        applyStudyService.execute(id)
+        return ResponseEntity.ok().build()
+    }
+
+    @PostMapping("/permission/{id}")
+    fun applyStudy(@PathVariable id: Long, @RequestBody applyStudyReqDto: ApplyPermissionStudyReqDto): ResponseEntity<Void> {
+        applyStudyService.execute(id, applyStudyReqDto)
+        return ResponseEntity.ok().build()
+    }
+
+    @PostMapping("/private/{id}")
+    fun applyStudy(@PathVariable id: Long, @RequestParam code: String): ResponseEntity<Void> {
+        applyStudyService.execute(id, code)
+        return ResponseEntity.ok().build()
+    }
+
+    @GetMapping("/{id}/pending-list")
+    fun getPendingList(@PathVariable id: Long): ResponseEntity<PendingListResDto> =
+        ResponseEntity.ok(getPendingListService.execute(id))
+
+    @PostMapping("/approve/{id}")
+    fun approvePendingUser(@PathVariable id: String): ResponseEntity<Void> {
+        approveStudyMemberService.execute(id)
         return ResponseEntity.ok().build()
     }
 }

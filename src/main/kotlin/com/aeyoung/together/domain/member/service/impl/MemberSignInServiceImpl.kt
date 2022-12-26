@@ -33,7 +33,7 @@ class MemberSignInServiceImpl(
         }
         val accessToken = tokenProvider.generateAccessToken(req.email)
         val refreshToken = tokenProvider.generateRefreshToken(req.email)
-        val entityToRedis = RefreshToken(req.email, refreshToken, TokenProvider.REFRESH_EXP)
+        val entityToRedis = RefreshToken(req.email, refreshToken)
         refreshTokenRepository.save(entityToRedis)
 
         return MemberSignInResDto(

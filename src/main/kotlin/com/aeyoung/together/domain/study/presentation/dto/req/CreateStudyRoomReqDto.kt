@@ -19,14 +19,27 @@ class CreateStudyRoomReqDto(
     @NotBlank
     val scope: StudyRoomScope,
     val question: String?,
-    val tags: List<String>?
+    val tags: List<String>
 ) {
-    fun toEntity(member: Member,tags:List<StudyTag>): StudyRoom =
+    fun toEntity(member: Member,tags:MutableList<StudyTag>): StudyRoom =
         StudyRoom(
             title = title,
             description = description,
             maximum = maximum,
             scope = scope,
+            code = null,
+            question = question,
+            host = member,
+            tags = tags
+        )
+
+    fun toEntity(member: Member,tags:MutableList<StudyTag>, code: String): StudyRoom =
+        StudyRoom(
+            title = title,
+            description = description,
+            maximum = maximum,
+            scope = scope,
+            code = code,
             question = question,
             host = member,
             tags = tags

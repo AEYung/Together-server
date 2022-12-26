@@ -19,16 +19,17 @@ class StudyRoom(
     @Enumerated(EnumType.STRING)
     val scope: StudyRoomScope,
     val question: String?,
+    val code: String?,
     @ManyToOne
     @JoinColumn(name = "host")
     val host: Member,
     @ManyToMany
-    val tags: List<StudyTag>
+    val tags: MutableList<StudyTag>
 
 ) : BaseIdEntity() {
 
     @ManyToMany
-    val members: List<Member> = mutableListOf()
+    val members: MutableList<Member> = mutableListOf()
 
     @OneToMany(mappedBy = "studyRoom")
     val studyNotices: MutableList<StudyNotice> = mutableListOf()

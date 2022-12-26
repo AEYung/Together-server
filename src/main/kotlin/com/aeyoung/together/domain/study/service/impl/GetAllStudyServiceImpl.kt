@@ -1,5 +1,6 @@
 package com.aeyoung.together.domain.study.service.impl
 
+import com.aeyoung.together.domain.study.enums.StudyRoomScope
 import com.aeyoung.together.domain.study.presentation.dto.res.StudyListResDto
 import com.aeyoung.together.domain.study.presentation.dto.res.StudyResDto
 import com.aeyoung.together.domain.study.repository.StudyRoomRepository
@@ -15,6 +16,7 @@ class GetAllStudyServiceImpl(
     override fun execute(): StudyListResDto =
         StudyListResDto(
             list = studyRoomRepository.findAll()
+                .filter { it.scope != StudyRoomScope.PRIVATE }
                 .map { StudyResDto(it) }
         )
 
