@@ -1,4 +1,4 @@
-package com.aeyoung.together.domain.study
+package com.aeyoung.together.domain.studyRoom
 
 import com.aeyoung.together.domain.member.Member
 import com.aeyoung.together.global.entity.BaseIdEntity

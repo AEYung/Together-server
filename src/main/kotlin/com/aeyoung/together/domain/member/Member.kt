@@ -1,6 +1,6 @@
 package com.aeyoung.together.domain.member
 
-import com.aeyoung.together.domain.study.StudyNotice
+import com.aeyoung.together.domain.studyRoom.StudyNotice
 import com.aeyoung.together.domain.study.StudyRoom
 import com.aeyoung.together.global.entity.BaseIdEntity
 import jakarta.persistence.*

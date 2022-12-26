@@ -2,6 +2,7 @@ package com.aeyoung.together.domain.study
 
 import com.aeyoung.together.domain.member.Member
 import com.aeyoung.together.domain.study.enums.StudyRoomScope
+import com.aeyoung.together.domain.studyRoom.StudyNotice
 import com.aeyoung.together.global.entity.BaseIdEntity
 import jakarta.persistence.Entity
 import jakarta.persistence.EnumType
