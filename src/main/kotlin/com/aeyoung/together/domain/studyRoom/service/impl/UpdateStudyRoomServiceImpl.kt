@@ -11,6 +11,7 @@ import com.aeyoung.together.domain.studyRoom.presentation.dto.req.UpdateStudyRoo
 import com.aeyoung.together.domain.studyRoom.service.UpdateStudyRoomService
 import com.aeyoung.together.global.util.MemberUtil
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 import java.util.*
 
 @Service
@@ -19,7 +20,9 @@ class UpdateStudyRoomServiceImpl(
     val memberUtil: MemberUtil,
     val studyTagRepository: StudyTagRepository
 ) : UpdateStudyRoomService {
-    override fun updateStudyRoom(updateStudyRoomReqDto: UpdateStudyRoomReqDto, studyRoomId: Long) {
+
+    @Transactional(rollbackFor = [Exception::class])
+    override fun execute(updateStudyRoomReqDto: UpdateStudyRoomReqDto, studyRoomId: Long) {
         val updatingStudyRoom = studyRoomRepository.findById(studyRoomId).orElseThrow { throw StudyNotFoundException() }
 
         if (memberUtil.currentMember().id != updatingStudyRoom.host.id) throw MemberNotHostException()

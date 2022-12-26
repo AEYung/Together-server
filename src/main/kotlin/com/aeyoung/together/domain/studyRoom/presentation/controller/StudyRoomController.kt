@@ -36,7 +36,7 @@ class StudyRoomController(
 
     @PutMapping("/update/{studyId}")
     fun updateStudyRoom(@Valid @RequestBody updateStudyRoomReqDto: UpdateStudyRoomReqDto, @PathVariable studyId: Long): ResponseEntity<Void> {
-        updateStudyRoomService.updateStudyRoom(updateStudyRoomReqDto, studyId)
+        updateStudyRoomService.execute(updateStudyRoomReqDto, studyId)
         return ResponseEntity.ok().build()
     }
 

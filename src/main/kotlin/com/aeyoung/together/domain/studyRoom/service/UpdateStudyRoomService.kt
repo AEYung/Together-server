@@ -4,5 +4,5 @@ import com.aeyoung.together.domain.studyRoom.presentation.dto.req.UpdateStudyRoo
 
 interface UpdateStudyRoomService {
 
-    fun updateStudyRoom(updateStudyRoomReqDto: UpdateStudyRoomReqDto, studyRoomId: Long)
+    fun execute(updateStudyRoomReqDto: UpdateStudyRoomReqDto, studyRoomId: Long)
 }
