@@ -1,24 +1,25 @@
 package com.aeyoung.together.domain.study.presentation.controller
 
-import com.aeyoung.together.domain.study.StudyRoom
 import com.aeyoung.together.domain.study.presentation.dto.req.ApplyPermissionStudyReqDto
 import com.aeyoung.together.domain.study.presentation.dto.req.CreateStudyRoomReqDto
 
-import com.aeyoung.together.domain.study.presentation.dto.req.WriteNoticeCommentReqDto
-import com.aeyoung.together.domain.study.presentation.dto.req.WriteNoticeReqDto
+import com.aeyoung.together.domain.studyRoom.presentation.dto.req.WriteNoticeCommentReqDto
+import com.aeyoung.together.domain.studyRoom.presentation.dto.req.WriteNoticeReqDto
 
 import com.aeyoung.together.domain.study.presentation.dto.res.PendingListResDto
 
 import com.aeyoung.together.domain.study.presentation.dto.res.StudyListResDto
 import com.aeyoung.together.domain.study.presentation.dto.res.StudyResDto
 import com.aeyoung.together.domain.study.service.*
+import com.aeyoung.together.domain.studyRoom.service.WriteNoticeCommentService
+import com.aeyoung.together.domain.studyRoom.service.WriteNoticeService
 import jakarta.validation.Valid
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/studies")
-class StudyRoomController(
+class StudyController(
     private val createStudyRoomService: CreateStudyRoomService,
     private val getAllStudyService: GetAllStudyService,
     private val getOneStudyService: GetOneStudyService,
@@ -48,17 +49,6 @@ class StudyRoomController(
     fun searchStudy(@RequestParam searchArgument: String): ResponseEntity<StudyListResDto> =
         ResponseEntity.ok(searchStudyService.execute(searchArgument))
 
-    @PostMapping("/{studyId}/notices")
-    fun writeNotice(@Valid @RequestBody writeNoticeReqDto: WriteNoticeReqDto, @RequestParam studyId: Long): ResponseEntity<Void> {
-        writeNoticeService.execute(writeNoticeReqDto, studyId)
-        return ResponseEntity.ok().build()
-    }
-
-    @PostMapping("/{studyId}/{noticeId}/comments")
-    fun writeNoticeComment(@Valid @RequestBody writeNoticeCommentReqDto: WriteNoticeCommentReqDto, @RequestParam noticeId: Long): ResponseEntity<Void> {
-        writeNoticeCommentService.execute(writeNoticeCommentReqDto, noticeId)
-        return ResponseEntity.ok().build()
-    }
 
     @PostMapping("/{id}")
     fun applyStudy(@PathVariable id: Long): ResponseEntity<Void> {

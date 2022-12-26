@@ -1,10 +1,10 @@
-package com.aeyoung.together.domain.study.service.impl
+package com.aeyoung.together.domain.studyRoom.service.impl
 
 import com.aeyoung.together.domain.study.exception.StudyNoticeNotFoundException
-import com.aeyoung.together.domain.study.presentation.dto.req.WriteNoticeCommentReqDto
-import com.aeyoung.together.domain.study.repository.StudyNoticeCommentRepository
-import com.aeyoung.together.domain.study.repository.StudyNoticeRepository
-import com.aeyoung.together.domain.study.service.WriteNoticeCommentService
+import com.aeyoung.together.domain.studyRoom.presentation.dto.req.WriteNoticeCommentReqDto
+import com.aeyoung.together.domain.studyRoom.repository.StudyNoticeCommentRepository
+import com.aeyoung.together.domain.studyRoom.repository.StudyNoticeRepository
+import com.aeyoung.together.domain.studyRoom.service.WriteNoticeCommentService
 import com.aeyoung.together.global.util.MemberUtil
 import org.springframework.stereotype.Service
 
