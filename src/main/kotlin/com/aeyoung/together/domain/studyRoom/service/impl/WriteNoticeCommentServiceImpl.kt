@@ -1,6 +1,6 @@
 package com.aeyoung.together.domain.studyRoom.service.impl
 
-import com.aeyoung.together.domain.study.exception.StudyNoticeNotFoundException
+import com.aeyoung.together.domain.studyRoom.exception.StudyNoticeNotFoundException
 import com.aeyoung.together.domain.studyRoom.presentation.dto.req.WriteNoticeCommentReqDto
 import com.aeyoung.together.domain.studyRoom.repository.StudyNoticeCommentRepository
 import com.aeyoung.together.domain.studyRoom.repository.StudyNoticeRepository
