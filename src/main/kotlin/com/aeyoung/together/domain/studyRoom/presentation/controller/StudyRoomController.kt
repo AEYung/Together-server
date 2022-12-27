@@ -3,7 +3,9 @@ package com.aeyoung.together.domain.studyRoom.presentation.controller
 import com.aeyoung.together.domain.studyRoom.presentation.dto.req.UpdateStudyRoomReqDto
 import com.aeyoung.together.domain.studyRoom.presentation.dto.req.WriteNoticeCommentReqDto
 import com.aeyoung.together.domain.studyRoom.presentation.dto.req.WriteNoticeReqDto
-import com.aeyoung.together.domain.studyRoom.presentation.dto.res.GetRoomInfoResDto
+import com.aeyoung.together.domain.studyRoom.presentation.dto.res.CheckHostMemberResDto
+import com.aeyoung.together.domain.studyRoom.presentation.dto.res.HostRoomInfoResDto
+import com.aeyoung.together.domain.studyRoom.presentation.dto.res.MemberRoomInfoResDto
 import com.aeyoung.together.domain.studyRoom.service.*
 import jakarta.validation.Valid
 import org.springframework.http.ResponseEntity
@@ -21,7 +23,9 @@ class StudyRoomController(
     val writeNoticeService: WriteNoticeService,
     val writeNoticeCommentService: WriteNoticeCommentService,
     val updateStudyRoomService: UpdateStudyRoomService,
-    val getStudyInfoService: GetStudyInfoService
+    val getHostStudyInfoService: GetHostStudyInfoService,
+    val getMemberStudyInfoService: GetMemberStudyInfoService,
+    val checkHostMemberService: CheckHostMemberService
 ) {
     @PostMapping("/{studyId}/notices")
     fun writeNotice(@Valid @RequestBody writeNoticeReqDto: WriteNoticeReqDto, @PathVariable studyId: Long): ResponseEntity<Void> {
@@ -41,8 +45,16 @@ class StudyRoomController(
         return ResponseEntity.ok().build()
     }
 
-    @GetMapping("/{studyId}")
-    fun getStudyRoomInfo(@PathVariable studyId: Long): ResponseEntity<GetRoomInfoResDto> {
-        return ResponseEntity.ok(getStudyInfoService.execute(studyId))
-    }
+    @GetMapping("/{studyId}/host")
+    fun checkHostMember(@PathVariable studyId: Long): ResponseEntity<CheckHostMemberResDto> =
+        ResponseEntity.ok(checkHostMemberService.execute(studyId))
+
+    @GetMapping("/host/{studyId}")
+    fun getHostStudyRoomInfo(@PathVariable studyId: Long): ResponseEntity<HostRoomInfoResDto> =
+        ResponseEntity.ok(getHostStudyInfoService.execute(studyId))
+
+
+    @GetMapping("/member/{studyId}")
+    fun getMemberStudyRoomInfo(@PathVariable studyId: Long): ResponseEntity<MemberRoomInfoResDto> =
+        ResponseEntity.ok(getMemberStudyInfoService.execute(studyId))
 }

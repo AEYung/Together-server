@@ -1,11 +1,9 @@
 package com.aeyoung.together.domain.studyRoom.presentation.dto.res
 
-import com.aeyoung.together.domain.member.Member
 import com.aeyoung.together.domain.study.StudyRoom
 
-class GetRoomInfoResDto(
+class MemberRoomInfoResDto(
     val title: String,
-    val code: String?,
     val notices: RoomNoticesResDto,
     val members: RoomMembersResDto,
 ) {
@@ -14,7 +12,6 @@ class GetRoomInfoResDto(
     ) : this(
 
         title = studyRoom.title,
-        code = studyRoom.code,
         notices = RoomNoticesResDto(
             list = studyRoom.studyNotices.map { RoomNoticeResDto(it) }
         ),
