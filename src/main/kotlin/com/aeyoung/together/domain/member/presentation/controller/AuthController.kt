@@ -35,12 +35,6 @@ class AuthController(
         return ResponseEntity.ok(data)
     }
 
-    @GetMapping("/member")
-    fun getLoginMember(): ResponseEntity<Member> {
-        val loginMember = memberSignInService.getLoginMember()
-        return ResponseEntity.ok(loginMember)
-    }
-
     @PostMapping("/refresh")
     fun refresh(@RequestHeader("RefreshToken") refreshToken: String): ResponseEntity<RefreshResDto> =
         ResponseEntity.ok(refreshService.execute(refreshToken))

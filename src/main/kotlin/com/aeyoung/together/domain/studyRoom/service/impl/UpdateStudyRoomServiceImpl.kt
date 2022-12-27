@@ -44,6 +44,15 @@ class UpdateStudyRoomServiceImpl(
             } else
                 updateStudyRoomReqDto.toEntity(updatingStudyRoom.host, tags)
 
+        updatingStudyRoom.members.forEach {
+            if (!studyRoom.members.contains(it))
+                studyRoom.members.add(it)
+        }
+
+        updatingStudyRoom.studyNotices.forEach {
+            if (!studyRoom.studyNotices.contains(it))
+                studyRoom.studyNotices.add(it)
+        }
         studyRoom.id = updatingStudyRoom.id
         studyRoomRepository.save(studyRoom)
     }
