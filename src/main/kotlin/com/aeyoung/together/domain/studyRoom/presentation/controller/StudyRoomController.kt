@@ -3,11 +3,11 @@ package com.aeyoung.together.domain.studyRoom.presentation.controller
 import com.aeyoung.together.domain.studyRoom.presentation.dto.req.UpdateStudyRoomReqDto
 import com.aeyoung.together.domain.studyRoom.presentation.dto.req.WriteNoticeCommentReqDto
 import com.aeyoung.together.domain.studyRoom.presentation.dto.req.WriteNoticeReqDto
-import com.aeyoung.together.domain.studyRoom.service.UpdateStudyRoomService
-import com.aeyoung.together.domain.studyRoom.service.WriteNoticeCommentService
-import com.aeyoung.together.domain.studyRoom.service.WriteNoticeService
+import com.aeyoung.together.domain.studyRoom.presentation.dto.res.GetRoomInfoResDto
+import com.aeyoung.together.domain.studyRoom.service.*
 import jakarta.validation.Valid
 import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.PutMapping
@@ -20,7 +20,8 @@ import org.springframework.web.bind.annotation.RestController
 class StudyRoomController(
     val writeNoticeService: WriteNoticeService,
     val writeNoticeCommentService: WriteNoticeCommentService,
-    val updateStudyRoomService: UpdateStudyRoomService
+    val updateStudyRoomService: UpdateStudyRoomService,
+    val getStudyInfoService: GetStudyInfoService
 ) {
     @PostMapping("/{studyId}/notices")
     fun writeNotice(@Valid @RequestBody writeNoticeReqDto: WriteNoticeReqDto, @PathVariable studyId: Long): ResponseEntity<Void> {
@@ -40,4 +41,8 @@ class StudyRoomController(
         return ResponseEntity.ok().build()
     }
 
+    @GetMapping("/{studyId}")
+    fun getStudyRoomInfo(@PathVariable studyId: Long): ResponseEntity<GetRoomInfoResDto> {
+        return ResponseEntity.ok(getStudyInfoService.execute(studyId))
+    }
 }

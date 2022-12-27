@@ -4,6 +4,7 @@ import com.aeyoung.together.domain.member.Member
 import com.aeyoung.together.domain.study.StudyRoom
 import com.aeyoung.together.domain.study.StudyTag
 import com.aeyoung.together.domain.study.enums.StudyRoomScope
+import com.aeyoung.together.domain.studyRoom.StudyNotice
 import com.aeyoung.together.global.entity.BaseIdEntity
 import jakarta.persistence.*
 import jakarta.validation.constraints.NotBlank

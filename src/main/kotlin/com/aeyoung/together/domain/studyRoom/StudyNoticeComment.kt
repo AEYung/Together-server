@@ -10,7 +10,7 @@ import jakarta.persistence.ManyToOne
 class StudyNoticeComment(
     val content: String,
     @ManyToOne
-    @JoinColumn(name = "studyRoom_id")
+    @JoinColumn(name = "studyNotice_id")
     val notice: StudyNotice,
     @ManyToOne
     val writer:Member
