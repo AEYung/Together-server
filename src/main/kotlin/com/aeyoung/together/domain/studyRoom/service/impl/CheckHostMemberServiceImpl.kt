@@ -7,12 +7,14 @@ import com.aeyoung.together.domain.studyRoom.presentation.dto.res.CheckHostMembe
 import com.aeyoung.together.domain.studyRoom.service.CheckHostMemberService
 import com.aeyoung.together.global.util.MemberUtil
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 @Service
 class CheckHostMemberServiceImpl(
     val memberUtil: MemberUtil,
     val studyRoomRepository: StudyRoomRepository
 ) : CheckHostMemberService {
+    @Transactional(rollbackFor = [Exception::class])
     override fun execute(studyId: Long): CheckHostMemberResDto {
         val checkMember = memberUtil.currentMember()
         val hostMember = studyRoomRepository.findById(studyId).orElseThrow { throw MemberNotFoundException() }
