@@ -3,7 +3,7 @@ package com.aeyoung.together.domain.study.presentation.dto.res
 import com.aeyoung.together.domain.study.StudyRoom
 import com.aeyoung.together.domain.study.StudyTag
 
-class StudyResDto(
+open class StudyResDto(
     val id: Long,
     val title: String,
     val description: String?,
