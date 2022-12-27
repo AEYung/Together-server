@@ -14,8 +14,8 @@ class GetHostStudyInfoServiceImpl(
     val studyRoomRepository: StudyRoomRepository,
     val memberUtil: MemberUtil
 ) : GetHostStudyInfoService {
-    
-    @Transactional(rollbackFor = [Exception::class])
+
+    @Transactional(rollbackFor = [Exception::class], readOnly = true)
     override fun execute(studyId: Long): HostRoomInfoResDto {
         val studyRoom = studyRoomRepository.findById(studyId)
             .orElseThrow { throw StudyNotFoundException() }

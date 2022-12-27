@@ -14,7 +14,7 @@ class CheckHostMemberServiceImpl(
     val memberUtil: MemberUtil,
     val studyRoomRepository: StudyRoomRepository
 ) : CheckHostMemberService {
-    @Transactional(rollbackFor = [Exception::class])
+    @Transactional(rollbackFor = [Exception::class], readOnly = true)
     override fun execute(studyId: Long): CheckHostMemberResDto {
         val checkMember = memberUtil.currentMember()
         val hostMember = studyRoomRepository.findById(studyId).orElseThrow { throw MemberNotFoundException() }

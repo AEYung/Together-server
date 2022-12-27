@@ -12,7 +12,7 @@ class GetMemberStudyInfoServiceImpl(
     val studyRoomRepository: StudyRoomRepository,
 ) : GetMemberStudyInfoService {
 
-    @Transactional(rollbackFor = [Exception::class])
+    @Transactional(rollbackFor = [Exception::class], readOnly = true)
     override fun execute(studyId: Long): MemberRoomInfoResDto {
         val studyRoom = studyRoomRepository.findById(studyId)
             .orElseThrow { throw StudyNotFoundException() }
