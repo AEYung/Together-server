@@ -22,7 +22,7 @@ class CreateStudyRoomServiceImpl(
 
     @Transactional(rollbackFor = [Exception::class])
     override fun createStudyRoom(createStudyRoomReqDto: CreateStudyRoomReqDto): StudyRoom {
-        val host = memberUtil.currentMember() ?: throw NotExistLoginMemberException()
+        val host = memberUtil.currentMember()
         val studyTags: MutableList<StudyTag> = mutableListOf()
         if (createStudyRoomReqDto.tags != null) {
             for (i in createStudyRoomReqDto.tags) {
@@ -31,12 +31,16 @@ class CreateStudyRoomServiceImpl(
             }
         }
         val studyRoom: StudyRoom =
-            if(createStudyRoomReqDto.scope == StudyRoomScope.PRIVATE){
+            if (createStudyRoomReqDto.scope == StudyRoomScope.PRIVATE) {
                 val code = UUID.randomUUID().toString().split("-")[0]
                 createStudyRoomReqDto.toEntity(host, studyTags, code)
             } else
                 createStudyRoomReqDto.toEntity(host, studyTags)
-        studyRoomRepository.save(studyRoom)
+
+
+        studyRoom.members.add(host)
+        val savedRoom = studyRoomRepository.save(studyRoom)
+        memberUtil.currentMember().studyList.add(savedRoom)
         return studyRoom
     }
 }
