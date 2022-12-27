@@ -7,7 +7,7 @@ import com.aeyoung.together.domain.studyRoom.service.GetMemberStudyInfoService
 import org.springframework.stereotype.Service
 
 @Service
-class GetMemberHostStudyInfoServiceImpl(
+class GetMemberStudyInfoServiceImpl(
     val studyRoomRepository: StudyRoomRepository,
 ) : GetMemberStudyInfoService {
     override fun execute(studyId: Long): MemberRoomInfoResDto {

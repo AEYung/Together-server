@@ -9,14 +9,14 @@ import com.aeyoung.together.global.util.MemberUtil
 import org.springframework.stereotype.Service
 
 @Service
-class GetHostHostStudyInfoServiceImpl(
+class GetHostStudyInfoServiceImpl(
     val studyRoomRepository: StudyRoomRepository,
     val memberUtil: MemberUtil
 ) : GetHostStudyInfoService {
     override fun execute(studyId: Long): HostRoomInfoResDto {
         val studyRoom = studyRoomRepository.findById(studyId)
             .orElseThrow { throw StudyNotFoundException() }
-        if (studyRoom.host.id == memberUtil.currentMember().id) {
+        if (studyRoom.host == memberUtil.currentMember()) {
             return HostRoomInfoResDto(
                 studyRoom = studyRoom
             )
