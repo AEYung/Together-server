@@ -44,9 +44,6 @@ dependencies {
     implementation("jakarta.mail:jakarta.mail-api:2.1.0")
     implementation("org.springframework:spring-context-support:6.0.3")
 
-    //socket
-    implementation("org.springframework.boot:spring-boot-starter-websocket")
-    implementation("com.googlecode.json-simple:json-simple:1.1.1")
 }
 
 tasks.withType<KotlinCompile> {
