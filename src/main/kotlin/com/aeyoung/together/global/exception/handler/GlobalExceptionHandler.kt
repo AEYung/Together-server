@@ -16,10 +16,10 @@ class GlobalExceptionHandler{
     private val log = LoggerFactory.getLogger(this::class.simpleName)
 
     @ExceptionHandler(BasicException::class)
-    fun basicExceptionHandling(req: HttpServletRequest, res: HttpServletResponse, ex: BasicException): ErrorResponse{
+    fun basicExceptionHandling(req: HttpServletRequest, res: HttpServletResponse, ex: BasicException): ResponseEntity<ErrorResponse>{
         log.error(req.requestURI)
         log.error(ex.errorCode.msg)
-        return ErrorResponse(ex.errorCode)
+        return ResponseEntity(ErrorResponse(ex.errorCode), HttpStatus.valueOf(ex.errorCode.code))
     }
 
     @ExceptionHandler(BindException::class)
