@@ -5,7 +5,6 @@ import com.aeyoung.together.domain.member.presentation.dto.res.MemberInfoResDto
 import com.aeyoung.together.domain.member.service.GetMyInfoService
 import com.aeyoung.together.domain.study.StudyRoom
 import com.aeyoung.together.domain.study.exception.StudyNotFoundException
-import com.aeyoung.together.domain.study.presentation.dto.res.StudyResDto
 import com.aeyoung.together.domain.study.repository.PendingUserRepository
 import com.aeyoung.together.domain.study.repository.StudyRoomRepository
 import com.aeyoung.together.global.util.MemberUtil
@@ -33,6 +32,7 @@ class GetMyInfoServiceImpl(
             }
         return MemberInfoResDto(
             id = member.id,
+            name = member.name,
             studyList = member.studyList.map { InfoStudyResDto(it, member) },
             pendingStudyList = lists.map { InfoStudyResDto(it, member) },
         )

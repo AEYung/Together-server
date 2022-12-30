@@ -4,6 +4,7 @@ import com.aeyoung.together.domain.study.presentation.dto.res.StudyResDto
 
 class MemberInfoResDto(
     val id : Long,
+    val name: String,
     val studyList: List<InfoStudyResDto>,
     val pendingStudyList: List<InfoStudyResDto>,
 )
