@@ -37,7 +37,6 @@ class CreateStudyRoomServiceImpl(
             } else
                 createStudyRoomReqDto.toEntity(host, studyTags)
 
-
         studyRoom.members.add(host)
         val savedRoom = studyRoomRepository.save(studyRoom)
         memberUtil.currentMember().studyList.add(savedRoom)
