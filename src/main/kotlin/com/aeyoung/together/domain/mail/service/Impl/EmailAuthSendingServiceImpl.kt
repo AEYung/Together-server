@@ -11,6 +11,8 @@ import org.springframework.data.redis.core.RedisTemplate
 import org.springframework.mail.javamail.JavaMailSender
 import org.springframework.mail.javamail.JavaMailSenderImpl
 import org.springframework.mail.javamail.MimeMessageHelper
+import org.springframework.scheduling.annotation.Async
+import org.springframework.scheduling.annotation.EnableAsync
 import org.springframework.stereotype.Service
 import java.io.UnsupportedEncodingException
 import java.util.*
@@ -18,6 +20,7 @@ import kotlin.collections.HashMap
 
 
 @Service
+@EnableAsync
 class EmailAuthSendingServiceImpl(
         private val emailAuthRepository: EmailAuthRepository,
         private val mailSender: JavaMailSender
@@ -46,6 +49,7 @@ class EmailAuthSendingServiceImpl(
         emailAuthRepository.save(EmailAuth(email = email, authCode = verifyNum, isChecked = false))
     }
 
+    @Async
     override fun sendMail(sendFrom: String, toMail: String, title: String, content: String) {
         val message = mailSender.createMimeMessage()
 

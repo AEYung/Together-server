@@ -1,4 +1,4 @@
-package com.aeyoung.together.domain.mail.controller
+package com.aeyoung.together.domain.mail.presentation.controller
 
 import com.aeyoung.together.domain.mail.presentation.dto.EmailAuthMailReqDto
 import com.aeyoung.together.domain.mail.presentation.dto.EmailAuthReqDto
