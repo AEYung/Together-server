@@ -34,6 +34,7 @@ class EmailAuthSendingServiceImpl(
         verifyNum += 111111
     }
 
+    @Async
     override fun joinEmail(email: String) {
         makeVerifyNum()
         val setFrom = "gsmtogether1@gmail.com"
@@ -49,7 +50,6 @@ class EmailAuthSendingServiceImpl(
         emailAuthRepository.save(EmailAuth(email = email, authCode = verifyNum, isChecked = false))
     }
 
-    @Async
     override fun sendMail(sendFrom: String, toMail: String, title: String, content: String) {
         val message = mailSender.createMimeMessage()
 
