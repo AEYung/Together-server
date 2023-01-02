@@ -9,6 +9,7 @@ open class StudyResDto(
     val description: String?,
     val maximum: Int,
     val currentCount: Int,
+    val hostName: String,
     val tags: List<StudyTag>
 ){
     constructor(
@@ -19,6 +20,7 @@ open class StudyResDto(
         description = studyRoom.description,
         maximum = studyRoom.maximum,
         currentCount = studyRoom.members.size,
+        hostName = studyRoom.host.name,
         tags = studyRoom.tags
     )
 }
