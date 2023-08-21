@@ -1,6 +1,5 @@
 package com.aeyoung.together.domain.study.service.impl
 
-import com.aeyoung.together.domain.member.exception.NotExistLoginMemberException
 import com.aeyoung.together.domain.study.StudyRoom
 import com.aeyoung.together.domain.study.StudyTag
 import com.aeyoung.together.domain.study.enums.StudyRoomScope
