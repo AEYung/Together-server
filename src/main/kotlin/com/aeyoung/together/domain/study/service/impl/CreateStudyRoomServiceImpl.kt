@@ -24,11 +24,9 @@ class CreateStudyRoomServiceImpl(
     override fun createStudyRoom(createStudyRoomReqDto: CreateStudyRoomReqDto): StudyRoom {
         val host = memberUtil.currentMember()
         val studyTags: MutableList<StudyTag> = mutableListOf()
-        if (createStudyRoomReqDto.tags != null) {
-            for (i in createStudyRoomReqDto.tags) {
-                val studyTag: StudyTag = studyTagRepository.findByContent(i) ?: studyTagRepository.save(StudyTag(i))
-                studyTags.add(studyTag)
-            }
+        for (i in createStudyRoomReqDto.tags) {
+            val studyTag: StudyTag = studyTagRepository.findByContent(i) ?: studyTagRepository.save(StudyTag(i))
+            studyTags.add(studyTag)
         }
         val studyRoom: StudyRoom =
             if (createStudyRoomReqDto.scope == StudyRoomScope.PRIVATE) {
