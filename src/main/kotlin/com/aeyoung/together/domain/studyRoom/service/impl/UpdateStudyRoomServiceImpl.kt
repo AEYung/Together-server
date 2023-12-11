@@ -30,12 +30,10 @@ class UpdateStudyRoomServiceImpl(
         if (memberUtil.currentMember().id != updatingStudyRoom.host.id)
             throw MemberNotHostException()
 
-        var tags = mutableListOf<StudyTag>()
-        if (updateStudyRoomReqDto.tags != null) {
-            for (i in updateStudyRoomReqDto.tags) {
-                val studyTag: StudyTag = studyTagRepository.findByContent(i) ?: studyTagRepository.save(StudyTag(i))
-                tags.add(studyTag)
-            }
+        val tags = mutableListOf<StudyTag>()
+        for (i in updateStudyRoomReqDto.tags) {
+            val studyTag: StudyTag = studyTagRepository.findByContent(i) ?: studyTagRepository.save(StudyTag(i))
+            tags.add(studyTag)
         }
         val studyRoom: StudyRoom =
             if (updateStudyRoomReqDto.scope == StudyRoomScope.PRIVATE) {
